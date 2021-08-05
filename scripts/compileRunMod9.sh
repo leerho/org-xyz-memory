@@ -18,7 +18,14 @@ $JAVAC -d target/test-classes -cp "libs/*" -p mods $(find . -name '*.java')
 echo "---- RUN ----"
 echo PWD:$(pwd)
 
-$JAVA -cp target/test-classes:"/libs/*":src/test/resources -p mods org.xyz.memory.CheckJava9plus
+$JAVA\
+  --add-exports java.base/jdk.internal.misc=org.apache.datasketches.memory\
+  --add-exports java.base/jdk.internal.ref=org.apache.datasketches.memory\
+  --add-opens java.base/java.nio=org.apache.datasketches.memory\
+  --add-opens java.base/sun.nio.ch=org.apache.datasketches.memory\
+  -cp "/libs/*":src/test/resources\
+  -p target/test-classes:mods\
+  -m org.xyz.memory/org.xyz.memory.CheckJava9plus
 
 #echo "--- JAR ---"
 # $JAR \

@@ -13,13 +13,19 @@ mkdir target
 mkdir target/classes
 mkdir target/test-classes
 
-$JAVAC -d target/test-classes -cp "libs/*" -p mods $(find . -name '*.java')
+$JAVAC -d target/test-classes -cp "mods/*":"libs/*" -p mods $(find . -name '*.java')
 
 echo "---- RUN ----"
 
 echo PWD:$(pwd)
 
-$JAVA -cp target/test-classes:"libs/*":src/test/resources -p mods org.xyz.memory.CheckJava9plus
+$JAVA\
+  --add-exports java.base/jdk.internal.misc=ALL-UNNAMED\
+  --add-exports java.base/jdk.internal.ref=ALL-UNNAMED\
+  --add-opens java.base/java.nio=ALL-UNNAMED\
+  --add-opens java.base/sun.nio.ch=ALL-UNNAMED\
+  -cp target/test-classes:"mods/*":"libs/*":src/test/resources\
+  org.xyz.memory.CheckJava9plus
 
 #echo "--- JAR ---"
 # $JAR \
