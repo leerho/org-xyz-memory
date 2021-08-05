@@ -2,7 +2,7 @@ export JAVA_HOME=$JAVA9_HOME
 export JAVAC=$JAVA_HOME/bin/javac
 export JAR=$JAVA_HOME/bin/jar
 export JAVA=$JAVA_HOME/bin/java
-patha=/Users/lrhodes/dev/NewMemory/org-nomvn-memory9
+patha=/Users/lrhodes/dev/git/org-xyz-memory/nomvn-mod-jdk9
 
 cd $patha
 echo PWD:$(pwd)
