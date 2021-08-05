@@ -2,7 +2,7 @@ export JAVA_HOME=$JAVA8_HOME
 export JAVAC=$JAVA_HOME/bin/javac
 export JAR=$JAVA_HOME/bin/jar
 export JAVA=$JAVA_HOME/bin/java
-patha=/Users/lrhodes/dev/git/org-xyz-memory/nomvn-jdk8
+patha=nomvn-jdk8
 
 cd $patha
 echo PWD:$(pwd)
@@ -13,13 +13,13 @@ mkdir target
 mkdir target/classes
 mkdir target/test-classes
 
-$JAVAC -d target/test-classes/  -cp "$patha/libs/*"  $(find . -name '*.java')
+$JAVAC -d target/test-classes/  -cp "libs/*"  $(find . -name '*.java')
 
 echo "---- RUN ----"
-cd target/test-classes/
+#cd target/test-classes/
 echo PWD:$(pwd)
 
-$JAVA -cp $patha/target/test-classes:$patha/libs/*:$patha/src/test/resources/ org.xyz.memory.CheckJava9plus
+$JAVA -cp target/test-classes:libs/*:src/test/resources/ org.xyz.memory.CheckJava9plus
 
 #echo "--- JAR ---"
 # $JAR \
