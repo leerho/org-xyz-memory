@@ -1,0 +1,3 @@
+module org.xyz.memory {
+  requires org.apache.datasketches.memory;
+}
